@@ -40,7 +40,7 @@ async def on_message(message):
 @bot.event
 async def on_member_join(member):
     await bot.change_presence(game=discord.Game(name='Hi %s' % (member)))
-    await bot.send_message(member, "Hi %s, Welcome to Carson's Discord Server! This server is fairly NSFW at times; you've been warned! Enjoy your stay :)" % (member))
+    await bot.send_message(member, "Hi %s, Welcome to the Spice Pantry! Enjoy your stay :)" % (member))
 
 
 @bot.event
