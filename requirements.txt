@@ -8,6 +8,7 @@ giphy-client==1.0.0
 idna==2.9
 multidict==4.7.6
 python-dateutil==2.8.1
+requests==2.23.0
 six==1.15.0
 urllib3==1.25.9
 websockets==8.1
