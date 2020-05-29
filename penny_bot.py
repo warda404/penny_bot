@@ -75,6 +75,20 @@ async def penny(ctx):
     await ctx.send(random.choice(response))
 
 
+@bot.command(name='roll', description='Roll dice! May the odds be in your favour!')
+async def roll(ctx):
+    response = [
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+    ]
+
+    await ctx.send(random.choice(response))
+
+
 @bot.command(name='8ball', description='Predict your future with my advanced AI ^[0-0]^ ')
 async def magic_eight_ball(ctx):
     response = [
