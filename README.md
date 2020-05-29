@@ -7,6 +7,8 @@ Client secret: aGxN20XWOi98tY-5AX5io_rTPG8yfD0B
 source bot-env/bin/activate
 Python3 penny_bot.py
 
+update requirements.txt: pip3 freeze
+
 # High priority:
 	- Friend (only respond to penny when friend)
 	- Kudos
