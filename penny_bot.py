@@ -20,6 +20,7 @@ async def on_ready():
     print("-------")
 
 
+@bot.event
 async def on_message(message):
     # Whenever a user other than bot says "hi"
     if message.content == 'hi':
