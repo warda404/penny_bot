@@ -23,16 +23,16 @@ async def on_ready():
 @bot.event
 async def on_message(message):
     # Whenever a user other than bot says "hi"
-    if message.content == 'hi':
-        await message.channel.send('Hi there!!! ' + message.author.mention)
-    elif message.content == 'hello':
-        await message.channel.send('Hello :) ' + message.author.mention)
-    elif message.content == 'hey':
-        await message.channel.send(message.author.mention + ' Hey yourself :D')
-    elif message.content == 'bye':
-        await message.channel.send(message.author.mention + ' May the force be with you')
-    elif message.content == "good bye":
-        await message.channel.send(message.author.mention + ' Live long and prosper')
+    if message.content.lower().contains('hi ') or message.content.lower().contains('hello ') or message.content.lower().contains('hey '):
+        hi_responses = [' Hi!!!', ' Hello <3',
+                        ' Salutations! :)', ' Hey there ;)', ' Greetings!']
+        response = random.choices(hi_responses)
+        await message.channel.send(message.author.mention + response)
+    elif message.content.lower().contains('bye ') or message.content.lower().contains('see ya'):
+        bye_responses = [' May the force be with you',
+                         ' Live long and prosper', ' Blessings be upon you', ' Byeee ~', ' Good bye!', ' No, don\'t go!']
+        response = random.choices(bye_responses)
+        await message.channel.send(message.author.mention + response)
 
     await bot.process_commands(message)
 
