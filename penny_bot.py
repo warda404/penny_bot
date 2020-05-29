@@ -7,43 +7,31 @@ import giphy_client
 from giphy_client.rest import ApiException
 
 # tokens and bot prefix
+bot = Bot(command_prefix='!')
 discord_token = 'NzE1NTYxODU4MDg1NDIxMDU3.Xs_ERA.rkZ9Y2A4zKEIEpcGdYJy5a5cSVU'
 giphy_token = 'UVkPW7wTQHcJrAJpCMAoyGdsCKfvXDKd'
-bot = Bot(command_prefix='!')
 api_instance = giphy_client.DefaultApi()
 
 
-class DiscordClient(discord.Client):
-    @bot.event
-    async def on_ready(self):
-        print("Login as")
-        print(self.user)
-        print("-------")
-
-    async def on_message(self, message):
-        # Whenever a user other than bot says "hi"
-        if message.author != self.user:
-            if message.content == 'hi':
-                await message.channel.send('Hi there!!! ' + message.author.mention)
-            elif message.content == 'hello':
-                await message.channel.send('Hello :) ' + message.author.mention)
-            elif message.content == 'hey':
-                await message.channel.send(message.author.mention + 'Hey yourself :D')
-            elif message.content == 'bye':
-                await message.channel.send(message.author.mention + ' May the force be with you')
-            elif message.content == "good bye":
-                await message.channel.send(message.author.mention + ' Live long and prosper')
+@bot.event
+async def on_ready():
+    print("Login as")
+    print(bot.user.name)
+    print("-------")
 
 
-client = DiscordClient()
-client.run(discord_token)
-
-
-# @bot.event
-# async def on_ready():
-#     print("Login as")
-#     print(bot.user.name)
-#     print("-------")
+async def on_message(message):
+    # Whenever a user other than bot says "hi"
+    if message.content == 'hi':
+        await message.channel.send('Hi there!!! ' + message.author.mention)
+    elif message.content == 'hello':
+        await message.channel.send('Hello :) ' + message.author.mention)
+    elif message.content == 'hey':
+        await message.channel.send(message.author.mention + ' Hey yourself :D')
+    elif message.content == 'bye':
+        await message.channel.send(message.author.mention + ' May the force be with you')
+    elif message.content == "good bye":
+        await message.channel.send(message.author.mention + ' Live long and prosper')
 
 
 async def search_gifs(query):
@@ -96,5 +84,6 @@ async def dance(ctx):
     gif = await search_gifs('dance')
     await ctx.send('〜(￣▽￣〜)(〜￣▽￣)〜')
     await ctx.send(gif)
+
 
 bot.run(discord_token)
