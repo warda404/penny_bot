@@ -1,6 +1,8 @@
 import discord
 from discord.ext.commands import Bot
 import random
+import requests
+from requests.exceptions import RequestException
 
 # imports for gif content
 import giphy_client
@@ -19,22 +21,21 @@ async def on_ready():
     print(bot.user.name)
     print("-------")
 
-
-@bot.event
-async def on_message(message):
-    # Whenever a user other than bot says "hi"
-    if 'hi ' in message.content.lower() or 'hello' in message.content.lower() or 'hey' in message.content.lower():
-        hi_responses = [' Hi!!!', ' Hello <3',
-                        ' Salutations! :)', ' Hey there ;)', ' Greetings!']
-        response = random.choices(hi_responses)
-        await message.channel.send(message.author.mention + response)
-    elif 'bye' in message.content.lower() or 'see ya' in message.content.lower():
-        bye_responses = [' I\'ll miss you :(', ' May the force be with you',
-                         ' Live long and prosper', ' Blessings be upon you', ' Byeee ~', ' Good bye!', ' No, don\'t go!']
-        response = random.choices(bye_responses)
-        await message.channel.send(message.author.mention + response)
-
-    await bot.process_commands(message)
+# @bot.event
+# async def on_message(message):
+#     # Whenever a user other than bot says "hi"
+#     if 'hi ' in message.content or 'hello' in message.content or 'hey' in message.content:
+#         hi_responses = [' Hi!!!', ' Hello <3',
+#                         ' Salutations! :)', ' Hey there ;)', ' Greetings!']
+#         response = random.choices(hi_responses)
+#         await message.channel.send(message.author.mention + response)
+#     elif 'bye' in message.content.lower() or 'see ya' in message.content.lower():
+#         bye_responses = [' I\'ll miss you :(', ' May the force be with you',
+#                          ' Live long and prosper', ' Blessings be upon you', ' Byeee ~', ' Good bye!', ' No, don\'t go!']
+#         response = random.choices(bye_responses)
+#         await message.channel.send(message.author.mention + response)
+#
+#     await bot.process_commands(message)
 
 
 @bot.event
@@ -70,6 +71,11 @@ async def penny(ctx):
         '*what*',
         'Hello!',
         'Not now',
+        'Hi!!!',
+        'Hello <3',
+        'Salutations! :)',
+        'Hey there ;)',
+        'Greetings!',
     ]
 
     await ctx.send(random.choice(response))
@@ -89,7 +95,7 @@ async def roll(ctx):
     await ctx.send(random.choice(response))
 
 
-@bot.command(name='8ball', description='Predict your future with my advanced AI ^[0-0]^ ')
+@bot.command(name='8ball', description='Predict your future with my advanced AI ^[0-0]^')
 async def magic_eight_ball(ctx):
     response = [
         'Without a doubt.',
@@ -112,6 +118,20 @@ async def dance(ctx):
     gif = await search_gifs('dance')
     await ctx.send('〜(￣▽￣〜)(〜￣▽￣)〜')
     await ctx.send(gif)
+
+
+@bot.command(name='inspire', description='Get life advice from my friend, Inspirobot!')
+async def inspire(ctx):
+    # sends GET request to Inspirobot for image url response
+    try:
+        url = 'http://inspirobot.me/api?generate=true'
+        params = {'generate': 'true'}
+        response = requests.get(url, params, timeout=10)
+        image = response.text
+        await ctx.send(image)
+
+    except RequestException:
+        await ctx.send('Inspirobot is broken, there is no reason to live.')
 
 
 bot.run(discord_token)
