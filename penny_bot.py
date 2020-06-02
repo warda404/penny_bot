@@ -25,13 +25,13 @@ async def on_ready():
 @bot.event
 async def on_message(message):
     # Whenever a user other than bot says "hi"
-    if message.content == 'Hi' or message.content == 'hi' or message.content == 'Hey' or message.content == 'hey' or message.content == 'Hello' or message.content.equals == 'hello':
+    if message.content.startsWith('Hi') or message.content.startsWith('hi') or message.content.startsWith('Hey') or message.content.startsWith('hey') or message.content.startsWith('Hello') or message.content.startsWith('hello'):
         hi_responses = [' Hi!!!', ' Hello <3',
                         ' Salutations! :)', ' Hey there ;)', ' Greetings!']
         response = random.choices(hi_responses)
         await message.channel.send(message.author.mention + response)
-    elif message.content == 'Bye' or message.content == 'bye' or message.content == 'goodbye' or message.content == 'good bye' or message.content == 'Goodbye' or message.content == 'Good bye' or message.content == 'see ya' or message.content == 'See ya' or message.content == 'later' or message.content == 'Later' or message.content == 'night' or message.content == 'good night' or message.content == 'goodnight'):
-        bye_responses=[' I\'ll miss you :(', ' May the force be with you',
+    elif message.content.startsWith('Bye') or message.content.startsWith('bye') or message.content.startsWith('goodbye') or message.content.startsWith('good bye') or message.content.startsWith('Goodbye') or message.content.startsWith('Good bye') or message.content.startsWith('see ya') or message.content.startsWith('See ya') or message.content.startsWith('later') or message.content.startsWith('night') or message.content.startsWith('good night') or message.content.startsWith('goodnight'):
+        bye_responses = [' I\'ll miss you :(', ' May the force be with you',
                          ' Live long and prosper', ' Blessings be upon you', ' Byeee ~', ' Good bye!', ' No, don\'t go!']
         response = random.choices(bye_responses)
         await message.channel.send(message.author.mention + response)
@@ -53,9 +53,9 @@ async def on_member_remove(member):
 async def search_gifs(query):
     try:
         response = api_instance.gifs_search_get(giphy_token,
-                                                query, limit = 30, rating = 'g')
-        lst=list(response.data)
-        gif=random.choices(lst)
+                                                query, limit=30, rating='g')
+        lst = list(response.data)
+        gif = random.choices(lst)
 
         return gif[0].url
 
@@ -63,9 +63,9 @@ async def search_gifs(query):
         return "Exception when calling DefaultApi->gifs_search_get: %s\n" % e
 
 
-@bot.command(name = 'penny', description = 'Grab my attention!')
+@bot.command(name='penny', description='Grab my attention!')
 async def penny(ctx):
-    response=[
+    response = [
         'Yes?',
         'How\'s it going!',
         'Hmm?',
