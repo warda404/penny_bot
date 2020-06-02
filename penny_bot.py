@@ -21,21 +21,22 @@ async def on_ready():
     print(bot.user.name)
     print("-------")
 
-# @bot.event
-# async def on_message(message):
-#     # Whenever a user other than bot says "hi"
-#     if 'hi ' in message.content or 'hello' in message.content or 'hey' in message.content:
-#         hi_responses = [' Hi!!!', ' Hello <3',
-#                         ' Salutations! :)', ' Hey there ;)', ' Greetings!']
-#         response = random.choices(hi_responses)
-#         await message.channel.send(message.author.mention + response)
-#     elif 'bye' in message.content.lower() or 'see ya' in message.content.lower():
-#         bye_responses = [' I\'ll miss you :(', ' May the force be with you',
-#                          ' Live long and prosper', ' Blessings be upon you', ' Byeee ~', ' Good bye!', ' No, don\'t go!']
-#         response = random.choices(bye_responses)
-#         await message.channel.send(message.author.mention + response)
-#
-#     await bot.process_commands(message)
+
+@bot.event
+async def on_message(message):
+    # Whenever a user other than bot says "hi"
+    if message.content.equals('Hi') or message.content.equals('hi') or message.content.equals('Hey') or message.content.equals('hey') or message.content.equals('Hello') or message.content.equals('hello'):
+        hi_responses = [' Hi!!!', ' Hello <3',
+                        ' Salutations! :)', ' Hey there ;)', ' Greetings!']
+        response = random.choices(hi_responses)
+        await message.channel.send(message.author.mention + response)
+    elif message.content.equals('Bye') or message.content.equals('bye') or message.content.equals('goodbye') or message.content.equals('good bye') or message.content.equals('Goodbye') or message.content.equals('Good bye') or message.content.equals('see ya') or message.content.equals('See ya') or message.content.equals('later') or message.content.equals('night') or message.content.equals('good night') or message.content.equals('goodnight'):
+        bye_responses = [' I\'ll miss you :(', ' May the force be with you',
+                         ' Live long and prosper', ' Blessings be upon you', ' Byeee ~', ' Good bye!', ' No, don\'t go!']
+        response = random.choices(bye_responses)
+        await message.channel.send(message.author.mention + response)
+
+    await bot.process_commands(message)
 
 
 @bot.event
