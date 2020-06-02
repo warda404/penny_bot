@@ -22,21 +22,21 @@ async def on_ready():
     print("-------")
 
 
-@bot.event
-async def on_message(message):
-    # Whenever a user other than bot says "hi"
-    if message.content.startsWith('Hi') or message.content.startsWith('hi') or message.content.startsWith('Hey') or message.content.startsWith('hey') or message.content.startsWith('Hello') or message.content.startsWith('hello'):
-        hi_responses = [' Hi!!!', ' Hello <3',
-                        ' Salutations! :)', ' Hey there ;)', ' Greetings!']
-        response = random.choices(hi_responses)
-        await message.channel.send(message.author.mention + response)
-    elif message.content.startsWith('Bye') or message.content.startsWith('bye') or message.content.startsWith('goodbye') or message.content.startsWith('good bye') or message.content.startsWith('Goodbye') or message.content.startsWith('Good bye') or message.content.startsWith('see ya') or message.content.startsWith('See ya') or message.content.startsWith('later') or message.content.startsWith('night') or message.content.startsWith('good night') or message.content.startsWith('goodnight'):
-        bye_responses = [' I\'ll miss you :(', ' May the force be with you',
-                         ' Live long and prosper', ' Blessings be upon you', ' Byeee ~', ' Good bye!', ' No, don\'t go!']
-        response = random.choices(bye_responses)
-        await message.channel.send(message.author.mention + response)
-
-    await bot.process_commands(message)
+# @bot.event
+# async def on_message(message):
+#     # Whenever a user other than bot says "hi"
+#     if message.content.startsWith('Hi') or message.content.startsWith('hi') or message.content.startsWith('Hey') or message.content.startsWith('hey') or message.content.startsWith('Hello') or message.content.startsWith('hello'):
+#         hi_responses = [' Hi!!!', ' Hello <3',
+#                         ' Salutations! :)', ' Hey there ;)', ' Greetings!']
+#         response = random.choices(hi_responses)
+#         await message.channel.send(message.author.mention + response)
+#     elif message.content.startsWith('Bye') or message.content.startsWith('bye') or message.content.startsWith('goodbye') or message.content.startsWith('good bye') or message.content.startsWith('Goodbye') or message.content.startsWith('Good bye') or message.content.startsWith('see ya') or message.content.startsWith('See ya') or message.content.startsWith('later') or message.content.startsWith('night') or message.content.startsWith('good night') or message.content.startsWith('goodnight'):
+#         bye_responses = [' I\'ll miss you :(', ' May the force be with you',
+#                          ' Live long and prosper', ' Blessings be upon you', ' Byeee ~', ' Good bye!', ' No, don\'t go!']
+#         response = random.choices(bye_responses)
+#         await message.channel.send(message.author.mention + response)
+#
+#     await bot.process_commands(message)
 
 
 @bot.event
